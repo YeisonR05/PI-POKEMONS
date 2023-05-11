@@ -1,9 +1,9 @@
 const axios = require('axios');
-const { Types } = require('../db.js');
+const { Types } = require('../db');
 
 
 module.exports = {
-  getallTypes: async () => {
+  getAllTypes: async () => {
     try {
       let typesDB = await Types.findAll();
       if (typesDB.length===0) {

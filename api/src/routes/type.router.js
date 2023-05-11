@@ -1,11 +1,11 @@
 const {Router} = require('express');
-const {getallTypes } = require ('../controllers/types.controllers.js')
+const {getAllTypes } = require ('../controllers/types.controllers')
 
 
 const router = Router();
 
 
-router.get('/', getallTypes )
+router.get('/', getAllTypes )
 /* router.get('/', getTypebyName) a futuro, si me sale*/
 
 

@@ -1,15 +1,13 @@
-const { Router } = require ('express')
-const { getPokemonById, getallPokemons, savePokemon, deletePokemonById, getPokemonByName } = require('../controllers/pokemon.controllers.js')
+const { Router } = require ('express');
+const { getAllPokemons, getPokemonById, createPokemon, } = require('../controllers/pokemon.controllers.js');
+const { Pokemon } = require('../db.js');
 
 const router = Router();
  
-
-router.get('/', getallPokemons);
-router.post('/', savePokemon);
+router.get('/', getAllPokemons)
 router.get('/:id', getPokemonById); 
-router.delete('/:id', deletePokemonById);
-router.get('/name/:name', getPokemonByName);
+router.post('/', createPokemon);
  
 
 
-module.exports = router;
+module.exports = router; 
