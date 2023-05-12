@@ -1,27 +1,26 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
 
-const pokeApi = async (name) => {
+// Traer los Pokemons de la API
+const pokemonApi = async (name) => {
   try { 
     if (name) {
-      const pokeByName = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${name}`
+      const pokemonByName = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${name}`  
       );
-      if (pokeByName) {
+      if (pokemonByName) {
         return {
-          id: pokeByName.data.id,
-          name: pokeByName.data.name,
-          hp: pokeByName.data.stats[0].base_stat,
-          attack: pokeByName.data.stats[1].base_stat,
-          defense: pokeByName.data.stats[2].base_stat,
-          speed: pokeByName.data.stats[5].base_stat,
-          height: pokeByName.data.height,
-          weight: pokeByName.data.weight,
-          image:
-            pokeByName.data.sprites.versions["generation-v"]["black-white"]
-              .front_default,
-          types: pokeByName.data.types.map((e) => {
-            return { name: e.type.name };
+          id: pokemonByName.data.id,
+          name: pokemonByName.data.name,
+          hp: pokemonByName.data.stats[0].base_stat,
+          attack: pokemonByName.data.stats[1].base_stat,
+          defense: pokemonByName.data.stats[2].base_stat,
+          speed: pokemonByName.data.stats[5].base_stat,
+          height: pokemonByName.data.height,
+          weight: pokemonByName.data.weight,
+          image: pokemonByName.data.sprites.versions["generation-v"]["black-white"].front_default,
+          types: pokemonByName.data.types.map((pokemon) => {
+            return { name: pokemon.type.name };
           }),
         };
       } else {
@@ -29,42 +28,41 @@ const pokeApi = async (name) => {
       }
     } else {
       const pokemonsApi = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=45"
+        "https://pokeapi.co/api/v2/pokemon?limit=50" // URL PI, Se limita a traer 50 Pokemons
       );
       const subRequest = pokemonsApi.data.results.map((e) => axios.get(e.url));
       let promiseRequest = await Promise.all(subRequest);
-     
-    //   console.log(promiseRequest);
 
-      promiseRequest = await promiseRequest.map((e) => {
+      promiseRequest = await promiseRequest.map((pokemon) => {
         return {
-          id: e.data.id,
-          name: e.data.name,
-          hp: e.data.stats[0].base_stat,
-          attack: e.data.stats[1].base_stat,
-          defense: e.data.stats[2].base_stat,
-          speed: e.data.stats[5].base_stat,
-          height: e.data.height,
-          weight: e.data.weight,
+          id: pokemon.data.id,
+          name: pokemon.data.name,
+          hp: pokemon.data.stats[0].base_stat,
+          attack: pokemon.data.stats[1].base_stat,
+          defense: pokemon.data.stats[2].base_stat,
+          speed: pokemon.data.stats[5].base_stat,
+          height: pokemon.data.height,
+          weight: pokemon.data.weight,
           image:
-            e.data.sprites.versions["generation-v"]["black-white"]
+          pokemon.data.sprites.versions["generation-v"]["black-white"]
               .front_default,
           createInDb: "false",
-          types: e.data.types.map((e) => {
-            return { name: e.type.name };
+          types: pokemon.data.types.map((pokemon) => {
+            return { name: pokemon.type.name };
           }),
         };
       });
-      return promiseRequest;//retorna el array de pokemons de la api
+      return promiseRequest;//retorna el array de Pokemons de la API
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-const pokeDb = async (name) => {
+// Traer el pokemon de la base de datos
+const pokemonDb = async (name) => {
   try {
-    let pokemon = await Pokemon.findAll({
+    let pokemon = await Pokemon.findAll({ //Busca todos los Pokemons que se encuentran en la DB
       include: {
         model: Type,
         attributes: ["name"],
@@ -74,8 +72,8 @@ const pokeDb = async (name) => {
       },
     });
     if (name) {
-      const pokdb= pokemon.filter((e) =>
-        e.name.toLowerCase().includes(name.toLowerCase())
+      const pokdb= pokemon.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(name.toLowerCase())
       );
     return pokdb;
     } else {
@@ -83,17 +81,16 @@ const pokeDb = async (name) => {
     
     }
   } catch {
-    // res.status(500).json("Pokemon not found");//c esto no encuentra los pokemons
-    console.log("Pokemon not found in db");
+    console.log("El Pokemon no se encuentra en la base de datos");
   }
 };
 
+// Traer los Pokemons de la API y DB
 const getPokemons = async (req, res) => {
   try{
       const { name } = req.query;
-      const pokemonsApi = await pokeApi(name);
-      console.log( pokemonsApi);
-      const pokemonsDb = await pokeDb(name);
+      const pokemonsApi = await pokemonApi(name); 
+      const pokemonsDb = await pokemonDb(name);
       let pokemonDbAndApi = [];
       if(!pokemonsApi && name){
           pokemonDbAndApi = pokemonsDb;
@@ -106,12 +103,13 @@ const getPokemons = async (req, res) => {
               pokemonDbAndApi = pokemonsApi;
           }
       };
-      res.send(pokemonDbAndApi);
+      res.send(pokemonDbAndApi); //Si se cumple todo, trae los Pokemons
   }catch(error){
       console.log(error);
   };
 };
 
+// Traer Pokemon por su ID
 const getPokemonById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -157,15 +155,16 @@ const getPokemonById = async (req, res) => {
   }
 };
 
+// Crear un nuevo Pokemon
 const createPokemon = async (req, res) => {
   try {
     const { name, hp, attack, defense, speed, height, weight, image, types } =
       req.body;
     const findPokemon = await Pokemon.findOne({
-      where: { name: name.toLowerCase() },//ver esto de lowerCase
-    });//Solo se fija si existe entre los creados
+      where: { name: name.toLowerCase() },
+    });
     if (findPokemon) {
-      res.send("Pokemon already exists");
+      res.send("El Pokemon creado ya existe");
     } else {
       let newPokemon = await Pokemon.create({
         name: name.toLowerCase(),
@@ -183,11 +182,7 @@ const createPokemon = async (req, res) => {
         },
       });
       await newPokemon.addTypes(pokemonType);
-      res.status(200)//esto hace falta? , no me hizo falta pero en un momento me salio  , no creo pokemon porque no quiero xD
-      //.json(newPokemon); // esto no hace falta por eso lo comento 
-
-      // await newPokemon.setTypes(pokemonType);
-      // res.send("Pokemon Created");
+      res.status(200)
     }
   } catch (error) {
     console.log(error);
