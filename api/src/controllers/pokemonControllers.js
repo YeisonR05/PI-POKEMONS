@@ -28,7 +28,7 @@ const pokemonApi = async (name) => {
       }
     } else {
       const pokemonsApi = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=50" // URL PI, Se limita a traer 50 Pokemons
+        "https://pokeapi.co/api/v2/pokemon?limit=60" // URL PI, Se limita a traer 48 Pokemons
       );
       const subRequest = pokemonsApi.data.results.map((e) => axios.get(e.url));
       let promiseRequest = await Promise.all(subRequest);

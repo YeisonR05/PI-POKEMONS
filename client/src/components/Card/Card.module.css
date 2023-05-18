@@ -1,0 +1,59 @@
+.img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.type{
+    display: flex;
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #6807f9;
+    font-family: monospace;
+}
+
+.type h5 {
+    padding: 2px;
+}
+
+.name {
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #6807f9;
+
+}
+
+.card {
+ position: relative;
+  width: 190px;
+  height: 254px;
+  background: #fff;
+  border: solid 4px #333;
+  box-shadow: -5px 5px #333;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.card:hover {
+    opacity: 1;
+    transition: opacity .3s 1s ease-in-out;
+   scale: 1.05;
+    box-shadow: 0px 0px #333;
+}
+
+.card:active {
+    transform: translateY(-1px);
+}
