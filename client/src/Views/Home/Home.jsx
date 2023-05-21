@@ -51,34 +51,56 @@ return (
         <div className={styles.nav}>
             <h2 className={styles.title}></h2>
 
-            <button onClick={rechargePokemon} className={styles.button}>Recharge</button>
+            {/* <button onClick={rechargePokemon} className={styles.button}>Recharge</button> */}
 
-            <select onChange={(e) => handleSort(e) } className={styles.button}>
-                <option value= 'none'>Order</option>
-                <option value= 'stronger'>Stronger</option>
-                <option value= 'weakness'>Weakness</option>
+            <select onChange={(e) => {handleSort(e)}} className={styles.button}>
+                <option value= 'order'>Filter By Order</option>
                 <option value = 'asc'>A-Z</option>
                 <option value = 'des'>Z-A</option>
-                </select>
+            </select>
 
-        <select onChange={filterType} className={styles.button}>
-            <option value="all">All types</option>
-            {allTypes.map((t) => (
-            <option key={t.name} value={t.name}>{t.name}</option>
-            ))}
-        </select>
+            <select onChange={(e) => {handleSort(e)}} className={styles.button}>
+                <option value= 'order'>Filter By Attack</option>
+                <option value= 'stronger'>Stronger</option>
+                <option value= 'weakness'>Weakness</option>
+            </select>
 
-        <select onChange={filterState} className={styles.button}>
-            <option value='none'>By State</option>
-            <option value='true'>Created</option>
-            <option value='false'>Existent</option>
-        </select>
+            <select onChange={ types => {filterType(types)}} className={styles.button}> 
+                <option value="all">Filter By Type</option>
+                <option value='normal'>normal</option>
+                <option value='rock'>rock</option>
+                <option value='water'>water</option>
+                <option value='dragon'>dragon</option>
+                <option value='flying'>flying</option>
+                <option value='ghos'>ghost</option>
+                <option value='electric'>electric</option>
+                <option value='fairy'>fairy</option>
+                <option value='poison'>poison</option>
+                <option value='steel'>steel</option>
+                <option value='psychic'>psychic</option>
+                <option value='unknown'>unknown</option>
+                <option value='fighting'>fighting</option>
+                <option value='fire'>fire</option>
+                <option value='ice'>ice</option>
+                <option value='shadow'>shadow</option>
+                <option value='ground'>ground</option>
+                <option value='bug'>bug</option>
+                <option value='grass'>grass</option>
+                <option value='dark'>dark</option>
+            </select>
 
-        <Link to='/create'><button className={styles.button}>Create Pokemon</button></Link>
+            <select onChange={filterState} className={styles.button}> 
+                <option value='none'>Filter By State</option>
+                <option value='true'>Created</option>
+                <option value='false'>Existent</option>
+            </select>
 
-        <SearchBar />
+            <Link to='/create'><button className={styles.button}>Create Pokemon</button></Link>
+
+            <SearchBar />
 
         </div>
+
     <div className={styles.cards}>
         {   currentPokemons?.map((e) => {
             return (
@@ -93,7 +115,7 @@ return (
         }
     </div>
     {            allPokemons.length === 0 && (
-            <img  className={styles.loadingPokemons}/>
+            <div class="loader">Loading...</div>
         )  }
 
         

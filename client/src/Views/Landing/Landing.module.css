@@ -3,54 +3,37 @@
     margin: 0px;
 }
 
-.flexContainer {
-    display: flex;
-}
-
-.firstContainer {
-    font-size: 10px;
-    color: #fff;
-    background-color: #263238;
-    width: 100%;
-    height: 100vh;
-}
-
-.title {
-    font-size: 3.5em;
-    margin: 15%;
-}
-
-.text {
-    font-size: 2.5em;
-    margin: 1.5em;
-}
-
-.secondContainer {
-    display: flex;
-    align-items: center;
-
-    background-color: rgba(179, 200, 209, 0.74);
-    width: 100%;
+/* Estilos Fondo de Landing */
+.body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('https://images.alphacoders.com/115/1159891.jpg');
+  background-size: cover;
 
 }
 
-.button {
-    padding: 20px 40px;
-    font-size: 2em;
-    margin-top: 2em;
-    border-radius: 2em;
-    border: none;
+
+/* Estilos Button Landing Page */
+.button { 
+  background: #fbcb1fe0;
+  font-family: inherit;
+  padding: 0.7em 1.3em;
+  font-weight: 900;
+  font-size: 17px;
+  border: 6px solid rgb(6, 20, 102);
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+  margin-top: 15px;
+  margin-left: 1000px;
 }
 
 .button:hover {
-    background-color: #4f5b62;
-    color: #fff;
-    transition: all 0.3s;
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
 }
 
-.gif {
-    justify-content: center;
-    padding-left: 40%;
-    width: 22em;
-    height: 25em;
+.button:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
 }

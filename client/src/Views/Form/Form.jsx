@@ -26,7 +26,7 @@ export default function PokemonCreate() {
       attack: "",
       defense: "",
       speed: "",
-      height: "",
+      height: "", 
       weight: "",
       image: "",
       types: [],
@@ -81,19 +81,21 @@ export default function PokemonCreate() {
   
     const handleTypesChange = (e) => {
       if (e.target.checked) {
-        setTypes([...types, e.target.value]);
-        setInput({ ...input, types: [...types, e.target.value] });
-      }    
+        setTypes((prevTypes) => [...prevTypes, e.target.value]);
+        setInput((prevInput) => ({
+          ...prevInput,
+          types: [...prevInput.types, e.target.value],
+        }));
+      }
     };
   
     return (
-      <div className={styles.body}>
+      <div className={styles.imagenFondo}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.nav}>
-            <h1>Create Pokemon</h1>
-            <button className={styles.button}>Create</button>
+            <button className={styles.buttoncreate}>Create</button>
             <Link to="/home">
-              <button className={styles.button}>Back</button>
+              <button className={styles.buttonback}>Back</button>
             </Link>
           </div>
   
@@ -239,7 +241,7 @@ export default function PokemonCreate() {
                           id={`checkbox${e.id}`}
                           value={e.name}
                         />
-                        <label for={`checkbox${e.id}`}>{e.name}</label>
+                        <label htmlFor={`checkbox${e.id}`}>{e.name}</label>
                       </li>
                     </ul>
                   </div>
