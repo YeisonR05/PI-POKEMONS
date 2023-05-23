@@ -24,14 +24,13 @@ export default function Detail(){
         <div className={styles.bodyDetail}>
                 <Link to='/home'>
                     <button className={styles.buttonback} onClick={cleanStore}>Back</button>
-                    
-                </Link>
+                </Link> 
     
   
                 <div className={styles.imageBox}>
                     <img src={pokemonDetail.image} alt="Pokemon Image" style={{borderRadius: '10px',width: '250px', height: '250px'}}/>
-                </div>
-                    <div>
+                </div> <br></br>
+                    <div className={styles.container}>
                     <h2 className={styles.name}>{pokemonDetail.name.toUpperCase()}</h2>
                     <h4 className={styles.id}>ID Number: {pokemonDetail.id}</h4>
                     <h4 className={styles.height}>Height: {pokemonDetail.height}</h4>
@@ -40,17 +39,15 @@ export default function Detail(){
                     <h4 className={styles.attack}>Attack: {pokemonDetail.attack}</h4>
                     <h4 className={styles.defense}>Defense: {pokemonDetail.defense}</h4>
                     <h4 className={styles.speed}>Speed: {pokemonDetail.speed}</h4>
-                    <h4 className={styles.type}>Type: 
+                    <h4 className={styles.type}>Type:  
                     {pokemonDetail && pokemonDetail.types.map((e) => (
-                    <h4 key={e.name}> {e.name[0].toUpperCase() + e.name.slice(1)}</h4>))}</h4>
+                    <h4 key={ e.name }> { e.name[0].toUpperCase() + e.name.slice(1) }</h4>))}</h4>
                 </div>
         </div>
         );
     } else{
         return (
-            <div>
-                Loading
-            </div>
+            <div className={styles.loader}></div>
         )
     };
 };

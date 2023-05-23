@@ -29,7 +29,7 @@ const pokeApi = async (name) => {
       }
     } else {
       const pokemonsApi = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=51"
+        "https://pokeapi.co/api/v2/pokemon?limit=230"
       );
       const subRequest = pokemonsApi.data.results.map((e) => axios.get(e.url));
       let promiseRequest = await Promise.all(subRequest);

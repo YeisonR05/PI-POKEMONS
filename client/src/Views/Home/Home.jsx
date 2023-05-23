@@ -51,7 +51,7 @@ return (
         <div className={styles.nav}>
             <h2 className={styles.title}></h2>
 
-            {/* <button onClick={rechargePokemon} className={styles.button}>Recharge</button> */}
+            <button onClick={rechargePokemon} className={styles.button}>Recharge</button>
 
             <select onChange={(e) => {handleSort(e)}} className={styles.button}>
                 <option value= 'order'>Filter By Order</option>
@@ -115,8 +115,8 @@ return (
         }
     </div>
     {            allPokemons.length === 0 && (
-            <div class="loader">Loading...</div>
-        )  }
+            <div className={styles.loader}></div>
+        )}
 
         
         <Paginated

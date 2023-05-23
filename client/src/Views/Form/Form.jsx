@@ -7,7 +7,7 @@ import styles from "./Form.module.css";
 
 export default function PokemonCreate() {
     const dispatch = useDispatch();
-    const typesData = useSelector((state) => state.types); // traer cosas del reducer
+    const typesData = useSelector((state) => state.types); 
     const [types, setTypes] = useState([]);
     const [error, setError] = useState({
       name: "",
@@ -75,7 +75,7 @@ export default function PokemonCreate() {
   
         setTypes([]);
         e.target.reset();
-        alert("A new Egg has Hatched!");
+        alert("A new Pokemon has been created");
       }
     };
   
@@ -93,7 +93,7 @@ export default function PokemonCreate() {
       <div className={styles.imagenFondo}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.nav}>
-            <button className={styles.buttoncreate}>Create</button>
+            <button className={styles.buttoncreate}>CREATE</button>
             <Link to="/home">
               <button className={styles.buttonback}>Back</button>
             </Link>
@@ -101,7 +101,7 @@ export default function PokemonCreate() {
   
           <div className={styles.statsAndTypes}>
             <div className={styles.stats}>
-              <h3>Stats</h3>
+              <h3>STATS</h3>
   
               <div className={styles.centralize}>
                 <div className={styles.inputBlock}>
@@ -132,7 +132,7 @@ export default function PokemonCreate() {
                     value={input.hp}
                     onChange={handleInputChange}
                   />
-                  <span className={styles.placeholder}>Health Points </span>
+                  <span className={styles.placeholder}>Health </span>
                 </div>
               </div>
   
@@ -223,13 +223,13 @@ export default function PokemonCreate() {
                     onChange={handleInputChange}
                   />
                   {error.image && <p>{error.image}</p>}
-                  <span className={styles.placeholder}>Image Link: </span>
+                  <span className={styles.placeholder}>Image Link:</span>
                 </div>
               </div>
             </div>
   
             <div className={styles.types}>
-              <h3>Types</h3>
+              <h3>TYPES</h3>
               <div className={styles.typesOrder}>
                 {typesData.map((e) => (
                   <div className={styles.container}>

@@ -1,33 +1,49 @@
 .bodyDetail {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #f8f8f0;
-  padding: 20px;
+  align-items: left;
+  background-image: url('https://images7.alphacoders.com/130/1305158.jpeg');
+  background-size: cover;
+  height: fit-content;
+  padding: 90px;
 }
 
 .buttonback {
   padding: 10px 20px;
   background-color: #ffd700;
-  color: #000;
+  color: #000; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.imgdiv {
-  display: flex;
-  justify-content: flex-end;
+.container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  height: 350px;
+  background-color: rgba(255, 255, 255, 0.63);
+  border: 2px solid #000000; /* Color del borde */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra alrededor de la imagen */
 }
 
-.img {
-  border-radius: 10px;
-  width: 250px;
-  height: 250px;
+
+
+.imageBox img {
+  display: block;
+  width: 300px;
+  height: 300px;
+  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.63);
+  border: 2px solid #000000; /* Color del borde */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra alrededor de la imagen */
 }
+
 
 .name {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   color: #000;
   margin-bottom: 10px;
@@ -40,13 +56,13 @@
 .attack,
 .defense,
 .speed {
-  font-size: 16px;
+  font-size: 20px;
   color: #000;
   margin-bottom: 5px;
 }
 
 .type {
-  font-size: 16px;
+  font-size: 20px;
   color: #000;
   margin-bottom: 5px;
 }
@@ -60,11 +76,6 @@
   border-radius: 5px;
 }
 
-.loading {
-  font-size: 18px;
-  margin-top: 20px;
-  color: #000;
-}
 
 .buttonback {
   font-family: monospace;
@@ -74,7 +85,7 @@
   padding: 8px 18px;
   border-radius: 10px;
   border: 1px solid #FAFAFA;
-  background: #252525;
+  background: #252525; 
   box-shadow: 3px 3px #fafafa;
   cursor: pointer;
   position: fixed;
@@ -87,3 +98,33 @@
   box-shadow: none;
   transform: translate(3px, 3px);
 }
+
+
+.loader {
+  width: 320px;
+  height: 100px;
+  border-radius: 20px;
+  color: #F4BF00;
+  border: 2px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  inset: 0 100% 0 0;
+  border-radius: inherit;
+  background: #F4BF00;
+  animation: p6 2s infinite;
+}
+
+@keyframes p6 {
+  100% {
+    inset: 0
+  }
+}
+

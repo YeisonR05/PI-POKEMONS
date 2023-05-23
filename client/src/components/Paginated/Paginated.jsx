@@ -7,7 +7,7 @@ export default function Paginated({ pokemonPerPage, allPokemons, paginated }){
         pageNumbers.push(i + 1);
     };
     return (
-        <div className={styles.paginatedBody}>
+        <div className={styles.paginatedBody}> 
             {
                 pageNumbers &&
                 pageNumbers.map(e => (

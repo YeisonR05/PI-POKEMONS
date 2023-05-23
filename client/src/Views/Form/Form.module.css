@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     height: 107vh;
-    background-image: url('https://images3.alphacoders.com/118/1187753.png');
+    background-image: url('https://images3.alphacoders.com/126/1260271.jpg');
     background-size: cover;
   
 }
@@ -16,7 +16,7 @@
     padding: 8px 18px;
     border-radius: 10px;
     border: 1px solid #FAFAFA;
-    background: #252525;
+    background: #252525; 
     box-shadow: 3px 3px #fafafa;
     cursor: pointer;
     position: fixed;
@@ -64,6 +64,7 @@
     justify-content: space-around;
     align-items: start;
     color: #ffffff;
+    
 }
 
 .stats {
@@ -72,45 +73,55 @@
     align-items: center;
     justify-content: space-around;
     height: 60%;
-    width: 30%;
+    width: 15%;
     background-color: #aa9a5bcc;
     border-radius: 50px;
-    padding: 1.5%;
-    margin-top: 70px;
-}
-
-.stats h3 {
+    padding: 1%;
+    margin-top: 90px;
+    
+    }
+    
+    .stats h3 {
     color: #030303;
-}
-
-.typesOrder {
+    margin: 0; /* Añade un margen cero para evitar espacio adicional */
+    }
+    
+    .typesOrder {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
-
-.centralize {
+    }
+    
+    .centralize {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0.5em;
-}
-
-.inputBlock {
+    margin: 1.13em;
+    }
+    
+    .inputBlock {
     position: relative;
     display: grid;
-}
-
-.inputBlock input {
-    font-weight: 500;
-}
-
-.inputBlock span {
-    margin: 5px 1;
-    color: #111111;
+    grid-template-columns: 1fr auto;
     align-items: center;
-}
+    }
+    
+    .inputBlock input {
+    font-weight: 400;
+    padding: 2px 8px;
+    }
+    
+    .inputBlock span {
+    color: #111111;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin: 0; /* Añade un margen cero para evitar espacio adicional */
+    }
+
 
 /* Types buttons */
 
@@ -120,15 +131,17 @@
 }
 
 .types {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 60%;
+    width: 20%;
     background-color: #aa9a5bcc;
     border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1% 2%;
-    margin-top: 410px;
-    
+    padding: 1.5%;
+    margin-top: 100px;
+    margin-left: 600px;
 }
 
 .types h3 {
@@ -136,7 +149,7 @@
 }
 
 ul {
-    margin-block-start: 20px;
+    margin-block-start: 10px;
     list-style-type: none;
     display: flex;
     justify-content: center;
@@ -167,16 +180,7 @@ ul.ksCboxtags li label {
     cursor: pointer;
 }
 
-ul.ksCboxtags li label::before {
-    content: '';
-    width: 16px;
-    height: 16px;
-    background-color: #FFF;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 8px;
-    transform: rotate(45deg);
-}
+
 
 ul.ksCboxtags li input[type="checkbox"]:checked + label::before {
     background-color: #4CAF50;
